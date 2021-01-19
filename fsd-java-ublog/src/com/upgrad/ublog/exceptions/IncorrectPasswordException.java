@@ -6,19 +6,35 @@ package com.upgrad.ublog.exceptions;
  *  parameter and passes it to its base class.
  */
 
-public class IncorrectPasswordException {
+public class IncorrectPasswordException extends Exception {
+    public IncorrectPasswordException() {
+    }
 
+    public IncorrectPasswordException(String message) {
+        super(message);
+    }
 
-//    public static void main(String[] args) {
-//        try {
-//            throw new IncorrectPasswordException("Custom Message");
-//        } catch (IncorrectPasswordException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
+    public IncorrectPasswordException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public IncorrectPasswordException(Throwable cause) {
+        super(cause);
+    }
+
+    public IncorrectPasswordException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+    public static void main(String[] args) {
+        try {
+            throw new IncorrectPasswordException("Custom Message");
+        } catch (IncorrectPasswordException e) {
+            System.out.println(e.getMessage());
+        }
+
 //        /**
 //         * Your output should look like this.
 //         * Custom Message
 //         */
-//    }
+    }
 }

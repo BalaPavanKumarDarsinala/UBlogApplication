@@ -6,18 +6,36 @@ package com.upgrad.ublog.exceptions;
  *  parameter and passes it to its base class.
  */
 
-public class UserAlreadyRegisteredException {
+public class UserAlreadyRegisteredException extends Exception {
+    public UserAlreadyRegisteredException() {
+    }
 
-//    public static void main(String[] args) {
-//        try {
-//            throw new UserAlreadyRegisteredException("Custom Message");
-//        } catch (UserAlreadyRegisteredException e) {
-//            System.out.println(e.getMessage());
-//        }
-//
+    public UserAlreadyRegisteredException(String message) {
+        super(message);
+    }
+
+    public UserAlreadyRegisteredException(String message, Throwable cause) {
+        super(message, cause);
+    }
+
+    public UserAlreadyRegisteredException(Throwable cause) {
+        super(cause);
+    }
+
+    public UserAlreadyRegisteredException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+        super(message, cause, enableSuppression, writableStackTrace);
+    }
+
+    public static void main(String[] args) {
+        try {
+            throw new UserAlreadyRegisteredException("Custom Message");
+        } catch (UserAlreadyRegisteredException e) {
+            System.out.println(e.getMessage());
+        }
+
 //        /**
 //         * Your output should look like this.
 //         * Custom Message
 //         */
-//    }
+    }
 }

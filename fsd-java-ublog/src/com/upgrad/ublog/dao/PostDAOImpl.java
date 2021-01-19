@@ -40,4 +40,6 @@ package com.upgrad.ublog.dao;
 
 public class PostDAOImpl {
 
+    public static PostDAO getInstance() {
+    }
 }

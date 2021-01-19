@@ -5,6 +5,6 @@ import com.upgrad.ublog.dtos.User;
 import java.sql.SQLException;
 
 public interface UserDAO {
-    public User create(User user) throws SQLException;
-    public User findByEmailId(String emailId) throws SQLException;
+    public String create(User user) throws SQLException;
+    public UserDAOImpl findByEmailId(String emailId) throws SQLException;
 }

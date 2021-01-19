@@ -1,5 +1,9 @@
 package com.upgrad.ublog.db;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 /**
  * TODO 3.2: Implement the Database class using the Singleton Pattern (Hint. Should have the
  *  private no-arg constructor, a private static connection attribute of type Connection and a public
@@ -12,14 +16,39 @@ package com.upgrad.ublog.db;
  */
 
 public class Database {
+    private static Connection connection;
+private  Database(){}
+public Connection Connection(){
+    if(connection==null){
+        return getConnection();
+    }
+    else  return connection;
+}
+private static Connection getConnection(){
+    if(connection==null){
+        String userId = "helloWorld.com";
+        String emailId = "Bala";
+        String password = "Bala1112";
+        try {
+            Class.forName("helloWorld.com");
+            connection = DriverManager.getConnection(userId,emailId,password);
+        }
+        catch (ClassNotFoundException e){
+      System.out.println("found");
+        }
+        catch (SQLException e){
+            System.out.println("SQL exception");
 
-
-//    public static void main(String[] args) throws SQLException {
-//        try {
-//            Database.getConnection();
-//            System.out.println("Connected");
-//        } catch (Exception e) {
-//            System.out.println("Not Connected");
-//        }
-//    }
+        }
+    }
+    return connection;
+}
+   public static void main(String[] args) throws SQLException {
+        try {
+            Database.getConnection();
+            System.out.println("Connected");
+        } catch (Exception e) {
+            System.out.println("Not Connected");
+        }
+    }
 }
