@@ -8,5 +8,6 @@ package com.upgrad.ublog.services;
  */
 
 public class ServiceFactory {
-
+public PostService getPostService(){return PostServiceImpl.getPost();}
+public UserService getUserService(){return UserServiceImpl.getUserService();}
 }

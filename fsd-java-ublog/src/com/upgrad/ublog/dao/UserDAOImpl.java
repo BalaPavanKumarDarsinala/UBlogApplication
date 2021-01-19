@@ -18,9 +18,10 @@ import java.sql.SQLException;
 
 public abstract class UserDAOImpl implements UserDAO {
     private static  UserDAOImpl userDAO;
-    private Object User;
+    private static Object User;
 
-    public UserDAOImpl() {
+    public static UserDAO getUser() {
+        return (UserDAO) User;
     }
 
     public UserDAOImpl userDAO(){
@@ -29,41 +30,30 @@ public abstract class UserDAOImpl implements UserDAO {
         }
         else  return userDAO;
     }
-    private static UserDAOImpl getUserDAO(){
-        return userDAO;
+    private static UserDAO getUserDAO(){
+        return (UserDAO) User;
     }
-
-    public static Object getUser() {
-        return User;
-    }
-
-    public void setUser(Object user) {
-        User = user;
-    }
-
-    public static void setUserDAO(UserDAOImpl userDAO) {
-        UserDAOImpl.userDAO = userDAO;
-    }
-
     public String findByEmailId(){
-        Object temp = new Object();
-        return (String) User;
+
+        return  userDAO().findByEmailId();
     }
-public User create(){
-        return new User();
+public UserDAOImpl create(){
+        return userDAO();
 }
 
   public static void main(String[] args) {
-      try {
+        try {
             UserDAO userDAO = new UserDAOImpl() {
                 @Override
                 public String create(User user) throws SQLException {
-                    return null;
+                    String emailId = user.getEmailId();
+                    return emailId;
+
                 }
 
                 @Override
                 public UserDAOImpl findByEmailId(String emailId) throws SQLException {
-                    return null;
+                    return (UserDAOImpl) UserDAOImpl.getUserDAO();
                 }
             };
             User temp = new User();

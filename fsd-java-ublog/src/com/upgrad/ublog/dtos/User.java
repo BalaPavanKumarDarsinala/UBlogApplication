@@ -13,8 +13,12 @@ package com.upgrad.ublog.dtos;
  */
 
 public class User {
-  private int userId;
-  private  String emailId,Password;
+    public int postId;
+    public int userId;
+  public   String emailId,Password;
+    public String tag;
+    public String title;
+    public String description;
 
     public User(int userId, String emailId, String password) {
         this.userId = userId;

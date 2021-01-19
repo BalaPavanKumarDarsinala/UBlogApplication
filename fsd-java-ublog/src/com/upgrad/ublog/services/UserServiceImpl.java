@@ -1,5 +1,8 @@
 package com.upgrad.ublog.services;
 
+import com.upgrad.ublog.dao.DAOFactory;
+import com.upgrad.ublog.dtos.User;
+
 /**
  * TODO: 3.10. Implement the UserService interface and implement this class using the Singleton pattern.
  *  (Hint: Should have a private no-arg Constructor, a private static instance attribute of type
@@ -27,6 +30,24 @@ package com.upgrad.ublog.services;
  *  with a message "Some unexpected error occurred!"
  */
 
-public class UserServiceImpl {
+public abstract class UserServiceImpl implements UserService {
+    private static UserServiceImpl userService;
 
+    private UserServiceImpl() {
+    }
+    public static UserServiceImpl getUserService(){
+
+        return userService;}
+    DAOFactory userDao = new DAOFactory();
+
+    public static boolean login() throws Exception {
+        if(false){
+        return false;}
+        else{return true;}
+    }
+
+    @Override
+    public boolean register(User user) throws Exception {
+        return false;
+    }
 }

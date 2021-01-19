@@ -1,17 +1,11 @@
 package com.upgrad.ublog;
 
-import com.upgrad.ublog.dtos.Post;
 import com.upgrad.ublog.dtos.User;
-import com.upgrad.ublog.exceptions.PostNotFoundException;
 import com.upgrad.ublog.services.PostService;
 import com.upgrad.ublog.services.ServiceFactory;
 import com.upgrad.ublog.services.UserService;
-import com.upgrad.ublog.utils.DateTimeFormatter;
-import com.upgrad.ublog.utils.LogWriter;
+import com.upgrad.ublog.services.UserServiceImpl;
 
-import java.io.IOException;
-import java.time.LocalDateTime;
-import java.util.List;
 import java.util.Scanner;
 
 public class Application {
@@ -31,7 +25,7 @@ public class Application {
         loggedInEmailId = null;
     }
 
-    private void start() {
+    private void start() throws Exception {
         boolean flag = true;
 
         System.out.println("*********************");
@@ -76,6 +70,11 @@ public class Application {
      *  exception message using the getMessage() method.
      */
     private void login() {
+        try {
+            UserServiceImpl.login();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         if (isLoggedIn) {
             System.out.println("You are already logged in.");
             return;
@@ -88,6 +87,30 @@ public class Application {
 
     }
 
+    public Application() {
+        super();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+
+    @Override
+    protected Object clone() throws CloneNotSupportedException {
+        return super.clone();
+    }
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
+
     /**
      * TODO 3.18. Implement the register() method. This method should prompt the user for the
      *  email id and the password. Use the register() method of the UserService interface
@@ -98,7 +121,12 @@ public class Application {
      *  a single catch block which handles all exceptions using the Exception class and print the
      *  exception message using the getMessage() method.
      */
-    private void register() {
+    private void register() throws Exception {
+      try {
+          UserServiceImpl.login();
+      } catch (Exception e) {
+          e.printStackTrace();
+      }
         if (isLoggedIn) {
             System.out.println("You are already logged in.");
             return;
@@ -124,7 +152,17 @@ public class Application {
      *  a single catch block which handles all exceptions using the Exception class and print the
      *  exception message using the getMessage() method.
      */
-
+private void create(){
+    int postId;
+    String emailId,tag,title,description;
+    User post = new User();
+    post.postId = 1;
+    post.emailId = "bala";
+    post.tag = "tag";
+    post.title = "hello";
+    post.description = "des";
+    return;
+}
     /**
      * TODO 5.2: After saving the post details into the database using the createPost() method,\
      *  you should write logs in the following format.
@@ -143,6 +181,7 @@ public class Application {
      *  thread2: Writing logs into the file
      */
     private void createPost() {
+
         if (!isLoggedIn) {
             System.out.println("You are not logged in.");
             return;
@@ -241,9 +280,13 @@ public class Application {
      */
     public static void main(String[] args) {
         ServiceFactory serviceFactory = new ServiceFactory();
-        UserService userService = null;
-        PostService postService = null;
+        UserService userService = serviceFactory.getUserService();
+        PostService postService = serviceFactory.getPostService();
         Application application = new Application(postService, userService);
-        application.start();
+        try {
+            application.start();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

@@ -32,14 +32,51 @@ package com.upgrad.ublog.dao;
  *  without setting any of its attributes.
  */
 
+import com.upgrad.ublog.dtos.Post;
+
+import java.sql.SQLException;
+import java.util.List;
+
 /**
  * TODO: 4.8. Implement findAllTags() method which returns a list of all tags in the POST table.
  * TODO: 4.9. Implement findByTag() method which takes "tag" as an input argument and returns all the
  *  posts corresponding to the input "tag" from the POST table defined in the database.
  */
 
-public class PostDAOImpl {
-
+public class PostDAOImpl implements PostDAO {
+private static PostDAOImpl Instance;
     public static PostDAO getInstance() {
+    return getInstance();}
+
+    @Override
+    public Post create(Post post) throws SQLException {
+        return null;
     }
+
+    @Override
+    public List<Post> findByEmailId(String emailId) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<Post> findByTag(String tag) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public Post findByPostId(int postId) throws SQLException {
+        return null;
+    }
+
+    @Override
+    public List<String> findAllTags() throws SQLException {
+        return null;
+    }
+
+    @Override
+    public boolean deleteByPostId(int postId) throws SQLException {
+        return false;
+    }
+    public Post create(){return create();}
 }
+
