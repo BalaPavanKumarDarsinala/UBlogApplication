@@ -17,4 +17,5 @@ CREATE TABLE post (
     title VARCHAR(200),
     description VARCHAR(1000),
     timestamp VARCHAR(100)
-);
+);show tables;
+

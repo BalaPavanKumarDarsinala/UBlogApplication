@@ -44,9 +44,12 @@ import java.util.List;
  */
 
 public class PostDAOImpl implements PostDAO {
-private static PostDAOImpl Instance;
+    private static PostDAOImpl Instance;
+    private Object Post;
+
     public static PostDAO getInstance() {
-    return getInstance();}
+        return getInstance();
+    }
 
     @Override
     public Post create(Post post) throws SQLException {
@@ -77,6 +80,22 @@ private static PostDAOImpl Instance;
     public boolean deleteByPostId(int postId) throws SQLException {
         return false;
     }
-    public Post create(){return create();}
-}
 
+    public Post create() {
+        return create();
+    }
+
+    public String getPostsByEmailId(String emailId) {
+        return PostDAO.emailId;
+    }
+
+    public Class<Post> findEmailId(Post emailid) {
+        return Post.class;
+    }
+   public Object findAllTags(Post post){
+        return (com.upgrad.ublog.dtos.Post) Post;
+    }
+   public Post findByTag(Post tag) throws SQLException {
+        return (com.upgrad.ublog.dtos.Post) Post;
+   }
+}

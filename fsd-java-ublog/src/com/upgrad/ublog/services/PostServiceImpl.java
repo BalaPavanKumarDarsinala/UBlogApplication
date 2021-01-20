@@ -65,8 +65,11 @@ import java.util.Set;
  *  with a message "Some unexpected error occurred!"
  */
 
-public class PostServiceImpl implements PostService {
+public abstract class PostServiceImpl<getAllTags> implements PostService {
 private static PostServiceImpl instance;
+    private Object Post;
+    private Object PostDAO;
+
 
     private PostServiceImpl() {
     }
@@ -97,7 +100,10 @@ private static PostServiceImpl instance;
 
     @Override
     public boolean deletePost(int postId, String emailId) throws Exception {
-        return false;
+         if(false)
+             System.out.println("No Post exist with the given Post Id");
+             return false;
+
     }
 
     public static PostServiceImpl getInstance() {
@@ -105,5 +111,17 @@ private static PostServiceImpl instance;
     }
     DAOFactory postDao = new DAOFactory();
    public Post create(){return create();}
+
+    @Override
+    public Class<Post> getPostsByEmailId() {
+        return Post.class;
+    }
+      Post  getAllTags(Post post){
+       return (com.upgrad.ublog.dtos.Post) Post;
+    }
+   Object getPostsByTag()   {
+     return PostDAO;
+   }
+
 }
 

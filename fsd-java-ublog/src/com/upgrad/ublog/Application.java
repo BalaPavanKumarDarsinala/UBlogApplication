@@ -1,20 +1,22 @@
 package com.upgrad.ublog;
 
+import com.upgrad.ublog.dtos.Post;
 import com.upgrad.ublog.dtos.User;
 import com.upgrad.ublog.services.PostService;
 import com.upgrad.ublog.services.ServiceFactory;
 import com.upgrad.ublog.services.UserService;
 import com.upgrad.ublog.services.UserServiceImpl;
+import com.upgrad.ublog.utils.LogWriter;
 
 import java.util.Scanner;
 
-public class Application {
+public class Application extends com.upgrad.ublog.PostService {
+
     private Scanner scanner;
 
     private PostService postService;
     private UserService userService;
 
-    private boolean isLoggedIn;
     private String loggedInEmailId;
 
     public Application(PostService postService, UserService userService) {
@@ -152,9 +154,8 @@ public class Application {
      *  a single catch block which handles all exceptions using the Exception class and print the
      *  exception message using the getMessage() method.
      */
-private void create(){
-    int postId;
-    String emailId,tag,title,description;
+public void create(){
+
     User post = new User();
     post.postId = 1;
     post.emailId = "bala";
@@ -190,7 +191,9 @@ private void create(){
         System.out.println("*********************");
         System.out.println("*****Create Post*****");
         System.out.println("*********************");
-
+        LogWriter logWriter = new LogWriter();
+        System.getProperty("user.dir");
+        System.getProperty("user.dir");
 
     }
 
@@ -204,42 +207,22 @@ private void create(){
      *  a single catch block which handles all exceptions using the Exception class and print the
      *  exception message using the getMessage() method.
      */
+
     private void searchPost() {
-        if (!isLoggedIn) {
-            System.out.println("You are not logged in.");
-            return;
+        if (isLoggedIn) {
+            System.out.println("*********************");
+            System.out.println("*****Search Post*****");
+            System.out.println("*********************");
+
         }
+else {System.out.println("You are not logged in.");
+            return;
 
-        System.out.println("*********************");
-        System.out.println("*****Search Post*****");
-        System.out.println("*********************");
-
+        }
 
     }
 
-    /**
-     * TODO 4.7. Implement the deletePost() method. This method should prompt the user for the
-     *  post id. Use the deletePost() method of the PostService interface to delete the post
-     *  corresponding to the post id. If the post was deleted successfully (deletePost() method of
-     *  the PostService returns true), print the message "Post deleted successfully!" on the console.
-     *  If the post was not deleted successfully (deletePost() method of the PostService returns false),
-     *  print the message "You are not authorised to delete this post" on the console.
-     *  Catch all the exceptions thrown by the deletePost() method of the PostService interface with
-     *  a single catch block which handles all exceptions using the Exception class and print the
-     *  exception message using the getMessage() method.
-     */
-    private void deletePost() {
-        if (!isLoggedIn) {
-            System.out.println("You are not logged in.");
-            return;
-        }
 
-        System.out.println("*********************");
-        System.out.println("*****Delete Post*****");
-        System.out.println("*********************");
-
-
-    }
 
     /**
      * TODO 4.12. Implement the filterPost() method. This method should show all the unique tags present

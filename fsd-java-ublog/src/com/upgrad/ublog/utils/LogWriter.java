@@ -1,6 +1,5 @@
 package com.upgrad.ublog.utils;
 
-import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -11,5 +10,8 @@ import java.io.IOException;
  */
 
 public class LogWriter {
+ public static String writeLog(String logMessage, String path) throws IOException{
+   return  logMessage;
+ }
 
 }

@@ -26,18 +26,18 @@ public Connection Connection(){
 }
 private static Connection getConnection(){
     if(connection==null){
-        String userId = "helloWorld.com";
+        String url = "jdbc:mysql://localhost/ubank";
         String emailId = "Bala";
         String password = "Bala1112";
         try {
-            Class.forName("helloWorld.com");
-            connection = DriverManager.getConnection(userId,emailId,password);
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            connection = DriverManager.getConnection(url,emailId,password);
         }
         catch (ClassNotFoundException e){
-      System.out.println("found");
+      System.out.println("not found");
         }
         catch (SQLException e){
-            System.out.println("SQL exception");
+            e.printStackTrace();
 
         }
     }

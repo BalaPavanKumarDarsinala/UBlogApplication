@@ -9,5 +9,8 @@ import java.time.LocalDateTime;
  */
 
 public class DateTimeFormatter {
+    public static String format(LocalDateTime localDateTime){
+        return String.valueOf(localDateTime);
+    }
 
 }
