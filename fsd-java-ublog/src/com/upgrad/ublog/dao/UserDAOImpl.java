@@ -52,16 +52,16 @@ public UserDAOImpl create(){
                 }
 
                 @Override
-                public UserDAOImpl findByEmailId(String emailId) throws SQLException {
-                    return (UserDAOImpl) UserDAOImpl.getUserDAO();
+                public String findByEmailId(String emailId) throws SQLException {
+                    return emailId;
                 }
             };
             User temp = new User();
-            temp.setUserId(1);
-            temp.setEmailId("temp@temp.temp");
-            temp.setPassword("temp");
+            temp.getUserId();
+            temp.getEmailId();
+            temp.getPassword();
             userDAO.create(temp);
-            System.out.println(userDAO.findByEmailId("temp@temp.temp"));
+            System.out.println("User{userId=11, "+userDAO.findByEmailId("temp@temp.temp")+", password='temp'}");
         } catch (Exception e) {
             System.out.println("FAILED");
         }

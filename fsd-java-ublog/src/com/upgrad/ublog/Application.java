@@ -8,6 +8,7 @@ import com.upgrad.ublog.services.UserService;
 import com.upgrad.ublog.services.UserServiceImpl;
 import com.upgrad.ublog.utils.LogWriter;
 
+import java.util.List;
 import java.util.Scanner;
 
 public class Application extends com.upgrad.ublog.PostService {
@@ -23,7 +24,7 @@ public class Application extends com.upgrad.ublog.PostService {
         scanner = new Scanner(System.in);
         this.postService = postService;
         this.userService = userService;
-        isLoggedIn = false;
+      isLoggedIn = false;
         loggedInEmailId = null;
     }
 
@@ -70,13 +71,10 @@ public class Application extends com.upgrad.ublog.PostService {
      *  Catch all the exceptions thrown by the login() method of the UserService interface with
      *  a single catch block which handles all exceptions using the Exception class and print the
      *  exception message using the getMessage() method.
+     * @return
      */
     private void login() {
-        try {
-            UserServiceImpl.login();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+
         if (isLoggedIn) {
             System.out.println("You are already logged in.");
             return;
@@ -85,9 +83,19 @@ public class Application extends com.upgrad.ublog.PostService {
         System.out.println("*********************");
         System.out.println("********Login********");
         System.out.println("*********************");
-
-
+        try{
+            System.out.println("Enter EmailId:" );
+            String emailId = scanner.nextLine();;
+            System.out.println("Enter Password:");
+            String password = scanner.nextLine();
+isLoggedIn = true;
+        }
+        catch (Exception e){
+            System.out.println(e.getStackTrace());
+        }
+isLoggedIn = true;
     }
+
 
     public Application() {
         super();
@@ -124,11 +132,7 @@ public class Application extends com.upgrad.ublog.PostService {
      *  exception message using the getMessage() method.
      */
     private void register() throws Exception {
-      try {
-          UserServiceImpl.login();
-      } catch (Exception e) {
-          e.printStackTrace();
-      }
+
         if (isLoggedIn) {
             System.out.println("You are already logged in.");
             return;
@@ -137,6 +141,27 @@ public class Application extends com.upgrad.ublog.PostService {
         System.out.println("*********************");
         System.out.println("******Register*******");
         System.out.println("*********************");
+
+        try {
+
+
+
+            System.out.println("Email Id:");
+            String emailId = scanner.nextLine();
+            System.out.println("Password:");
+            String password1 = scanner.nextLine();
+            System.out.println("Confirm your password:");
+            String password2 = scanner.nextLine();
+         if(password1.equals(password2)){
+             System.out.println("your account is created");
+            }
+         else {
+             System.out.println("re-enter your password");
+         }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
 
     }
@@ -156,13 +181,7 @@ public class Application extends com.upgrad.ublog.PostService {
      */
 public void create(){
 
-    User post = new User();
-    post.postId = 1;
-    post.emailId = "bala";
-    post.tag = "tag";
-    post.title = "hello";
-    post.description = "des";
-    return;
+
 }
     /**
      * TODO 5.2: After saving the post details into the database using the createPost() method,\
@@ -188,14 +207,33 @@ public void create(){
             return;
         }
 
-        System.out.println("*********************");
-        System.out.println("*****Create Post*****");
-        System.out.println("*********************");
-        LogWriter logWriter = new LogWriter();
-        System.getProperty("user.dir");
-        System.getProperty("user.dir");
+            System.out.println("*********************");
+            System.out.println("*****Create Post*****");
+            System.out.println("*********************");
+            LogWriter logWriter = new LogWriter();
+            System.getProperty("user.dir");
+            System.getProperty("user.dir");
+            List<Post> post = null;
+            try {
 
-    }
+
+                System.out.println("Post Id:");
+                String PostId = scanner.nextLine();
+                System.out.println("Email Id:");
+                String emailId = scanner.nextLine();
+                System.out.println("Tag:");
+                String tag = scanner.nextLine();
+                System.out.println("Title:");
+                String title = scanner.nextLine();
+                System.out.println("Descriprtion:");
+                String description = scanner.nextLine();
+
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+            }
+
+
+        }
 
     /**
      * TODO 4.3. Implement the searchPost() method. This method should prompt the user for the
@@ -208,19 +246,79 @@ public void create(){
      *  exception message using the getMessage() method.
      */
 
-    private void searchPost() {
+    private void searchPost () {
         if (isLoggedIn) {
             System.out.println("*********************");
             System.out.println("*****Search Post*****");
             System.out.println("*********************");
-
         }
-else {System.out.println("You are not logged in.");
+        else {System.out.println("You are not logged in.");
             return;
 
         }
 
+            List<Post> post = null;
+
+            try{
+                System.out.println("enter Search Post : ");
+                post=postService.getPostsByEmailId(scanner.nextLine());
+            }
+            catch (Exception e){
+                System.out.println(e.getMessage());
+            }
+            if(post!=null){
+                for(Post eachPost:post){
+                    System.out.println(eachPost);
+                }}
+                else{
+                    System.out.println("No Posts Yet");
+                }
+            }
+
+
+
+
+
+    /**
+     * TODO 4.7. Implement the deletePost() method. This method should prompt the user for the
+     * post id. Use the deletePost() method of the PostService interface to delete the post
+     * corresponding to the post id. If the post was deleted successfully (deletePost() method of
+     * the PostService returns true), print the message "Post deleted successfully!" on the console.
+     * If the post was not deleted successfully (deletePost() method of the PostService returns false),
+     * print the message "You are not authorised to delete this post" on the console.
+     * Catch all the exceptions thrown by the deletePost() method of the PostService interface with
+     * a single catch block which handles all exceptions using the Exception class and print the
+     * exception message using the getMessage() method.
+     */
+    boolean deletePost() {
+        if (!isLoggedIn) {
+            System.out.println("You are not logged in.");
+            return false;
+        }
+
+        System.out.println("*********************");
+        System.out.println("*****Delete Post*****");
+        System.out.println("*********************");
+
+        List<Post> post = null;
+        try{
+            System.out.println("enter delete Post : ");
+            post=postService.getPostsByTag(scanner.nextLine());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        if(post!=null){
+            for(Post eachPost:post){
+                System.out.println(eachPost);
+            }}
+        else{
+            System.out.println("No Posts Yet");
+        }
+        return false;
     }
+
+
 
 
 
@@ -244,6 +342,22 @@ else {System.out.println("You are not logged in.");
         System.out.println("*********************");
         System.out.println("*****Filter Post*****");
         System.out.println("*********************");
+
+        List<Post> post = null;
+        try{
+            System.out.println("enter Tag Post : ");
+            post=postService.getPostsByTag(scanner.nextLine());
+        }
+        catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+        if(post!=null){
+            for(Post eachPost:post){
+                System.out.println(eachPost);
+            }}
+        else{
+            System.out.println("No Posts Yet");
+        }
 
 
     }

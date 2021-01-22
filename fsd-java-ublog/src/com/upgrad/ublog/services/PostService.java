@@ -12,5 +12,5 @@ public interface PostService {
     public Set<String> getAllTags() throws Exception;
     public boolean deletePost(int postId, String emailId) throws Exception;
 
-    Class<Post> getPostsByEmailId();
+    String getPostsByEmailId();
 }

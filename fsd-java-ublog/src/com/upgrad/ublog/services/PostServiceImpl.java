@@ -67,8 +67,8 @@ import java.util.Set;
 
 public abstract class PostServiceImpl<getAllTags> implements PostService {
 private static PostServiceImpl instance;
-    private Object Post;
-    private Object PostDAO;
+    private Post[] post;
+
 
 
     private PostServiceImpl() {
@@ -99,7 +99,7 @@ private static PostServiceImpl instance;
     }
 
     @Override
-    public boolean deletePost(int postId, String emailId) throws Exception {
+    public boolean deletePost(int postId, String emailId) {
          if(false)
              System.out.println("No Post exist with the given Post Id");
              return false;
@@ -113,15 +113,11 @@ private static PostServiceImpl instance;
    public Post create(){return create();}
 
     @Override
-    public Class<Post> getPostsByEmailId() {
-        return Post.class;
+    public String getPostsByEmailId() {
+        String emailId  = "1";
+        return getPostsByEmailId();
     }
-      Post  getAllTags(Post post){
-       return (com.upgrad.ublog.dtos.Post) Post;
-    }
-   Object getPostsByTag()   {
-     return PostDAO;
-   }
+
 
 }
 
