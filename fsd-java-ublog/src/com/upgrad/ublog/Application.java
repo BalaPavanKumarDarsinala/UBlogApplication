@@ -11,7 +11,7 @@ import com.upgrad.ublog.utils.LogWriter;
 import java.util.List;
 import java.util.Scanner;
 
-public class Application extends com.upgrad.ublog.PostService {
+public class Application extends com.upgrad.ublog.PostService{
 
     private Scanner scanner;
 
@@ -19,12 +19,13 @@ public class Application extends com.upgrad.ublog.PostService {
     private UserService userService;
 
     private String loggedInEmailId;
+    private boolean isLoggedIn;
 
     public Application(PostService postService, UserService userService) {
         scanner = new Scanner(System.in);
         this.postService = postService;
         this.userService = userService;
-      isLoggedIn = false;
+        boolean isLoggedIn = false;
         loggedInEmailId = null;
     }
 
@@ -387,3 +388,4 @@ public void create(){
         }
     }
 }
+
